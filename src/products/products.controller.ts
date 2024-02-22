@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUIDPipe, NotFoundException, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseUUIDPipe, NotFoundException, ParseIntPipe, UseInterceptors } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ProtectGuard } from './guards/protect.guard';
+import { ProductsInterceptor } from './interceptors/products.interceptor';
 
 @Controller('products')
 export class ProductsController {
@@ -14,6 +15,7 @@ export class ProductsController {
   }
 
   @Get()
+  @UseInterceptors(ProductsInterceptor)
   findAll() {
     return this.productsService.findAll();
   }

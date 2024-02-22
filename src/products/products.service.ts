@@ -23,7 +23,7 @@ export class ProductsService {
 
   findAll() {
 
-    return `This action returns all products`;
+    return this.products;
   }
 
   findOne(id: number) {
