@@ -14,6 +14,6 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(TestMiddleware)
-      .forRoutes({ path: 'products', method: RequestMethod.GET });
+      .forRoutes('*');
   }
 }
